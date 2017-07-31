@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>日记管理</title>
+	<script type="text/javascript" src="../../Constant.js"></script>
+</head>
+<body>
+<a href="./write.html">写日记</a>
+<!-- 
+	日记不支持修改
+-->
+<center>
+<div>
+	<table border="1" id="diary">
+		<th width="50">#</th>
+		<th>Time</th>
+		<th>Place</th>
+		<th>Content</th>
+		<th>Update</th>
+	</table>
+</div>
+</center>
+
+<!-- js -->
+ <script type="text/javascript" src = "http://fengwenyi.com/js/jquery-3.2.1.min.js"></script>
+ <script type="text/javascript">
+	 var URI = getUrl();
+ $(function() {
+ 	// 获取数据
+ 	$.ajax({
+            url: URI + '/admin/diary/all',
+            type: 'GET', //GET
+            async: true,    //或false,是否异步
+            data: {},
+            timeout: 5000,    //超时时间
+            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            beforeSend: function(xhr){
+                
+            },
+            success: function(data, textStatus, jqXHR){
+                // console.log(data);
+                // 解析json数据
+                // console.log(data.code + " " + data.msg + " " + data.data);
+                var code = data.code;
+                if (code == 0) {
+                	$.each(data.data, function(i, item) {
+                		// console.log(item.id + " / " + item.time + " / " + item.place + " / " + item.content);
+                		var html = '<tr>'
+										+ '<td id="id" align="center">' + item.id + '</td>'
+										+ '<td align="center">' + formatDate(new Date(item.time)) + '</td>'
+										+ '<td align="center">' + item.place + '</td>'
+										+ '<td align="center">' + item.content + '</td>'
+										+ '<td align="center"><a href="javascript:;" onclick="diaryDelete('+ item.id +')">删除</a></td>'
+									+ '</tr>';
+						$('#diary').append(html);
+                	});
+                } else {
+                	alert(data.code + ": " + data.msg);
+                }
+               	
+            },
+            error: function(xhr, textStatus){
+                console.log('error');
+            },
+            complete: function(){
+            }
+        });
+ });
+ 	// 删除
+ 	function diaryDelete(id) {
+ 		console.log(id);
+ 		$.ajax({
+            url: URI + '/admin/diary/delete/' + id,
+            type: 'DELETE', 
+            async: true,    //或false,是否异步
+            data: {},
+            timeout: 5000,    //超时时间
+            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            beforeSend: function(xhr){
+                
+            },
+            success: function(data, textStatus, jqXHR){
+               	
+            },
+            error: function(xhr, textStatus){
+                console.log('error');
+            },
+            complete: function(){
+                alert('操作成功');
+                location.href = "./list.html"
+            }
+        });
+ 	}
+
+ 	/* 时间格式化工具 */
+	function formatDate(now) {
+	　　var year = now.getFullYear(),
+	　　month = now.getMonth() + 1,
+	　　date = now.getDate(),
+	　　hour = now.getHours(),
+	　　minute = now.getMinutes();
+	　　return month + "月" + date + "号 " + hour + ":" + minute;
+	}
+ </script>
+</body>
+</html>

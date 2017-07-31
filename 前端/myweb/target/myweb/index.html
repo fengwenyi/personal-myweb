@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>fengwenyi</title>
+	<!-- meta -->
+	<!-- 页面编码，虽然是英文网站，但仍然支持中文 -->
+	<meta charset="utf-8" />
+
+	<!-- css -->
+	<link rel="stylesheet" href="https://dn-ssl-dwcdn.qbox.me/fa/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/index.css">
+
+	<script type="text/javascript" src="./Constant.js"></script>
+</head>
+<body>
+<!-- 
+英文网站
+-->
+
+<!-- hear -->
+<header class="header">
+	<div class="header-nav">
+		<a href="javascript:;"  class="header-nav-in">首页</a>
+		<a href="./websites.html">网址之家</a>
+
+		<div class="clear"></div>
+	</div>
+</header>
+
+<!-- chapter 1: Home -->
+<div class="home" id="home">
+
+	<!-- Hello -->
+	<div class="who" id="who">
+		<span class="hi">I'm Mr. Feng</span>
+		<span class="desc">A programmer who has a persistent pursuit of ideals</span>
+	</div>
+	
+</div>
+
+<!-- chapter 2: about me -->
+<!--
+我是谁？
+我是Mr. Feng，一个对青春有着执着追求的程序员！我的理念是：在年轻的季节我甘愿吃苦受累，只愿通过自己富有激情、积极主动的努力实现自身价值并在工作中做出最大的贡献。
+java，android，kotlin，mysql，Linux
+爱好：书法、乒乓球、旅游、电影、音乐···
+-->
+<div class="me">
+	<div class="me-1 me-info">Who am I ?</div>
+	<ul>
+		<li class="me-2 me-info">I am Mr.Feng. A programmer who has a persistent pursuit of ideals.</li>
+		<li class="me-3 me-info">I am an IT developer. Java, Android, Kotlin, MySQL and Linux ...</li>
+		<li class="me-4 me-info">In spare time, I will playing games, reading book, listening music and so on.</li>
+		<li class="me-photo"><img src="./img/header.jpg" width="100px">(January 2017 of Guangdong, China)</li>
+	</ul>
+</div>
+
+<!-- chapter 3: diary -->
+<!-- 每页显示一周（7条）的数据 -->
+<div class="diary">
+	<ul class="d-main" id="diary-content">
+		
+	</ul>	
+</div>
+
+<!-- chapter 4: leaving a message -->
+<div class="message">
+	<form action="javascript:;" method="POST">
+		<!-- 姓名，必需 -->
+		<div><input class="text" type="text" id="name" placeholder="First name and last name"></div>
+
+		<!-- 留言，必需 -->
+		<div><textarea class="textarea" id="content" placeholder="Say ..."></textarea></div>
+
+		<!-- 联系方式 -->
+		<div><input class="text" type="text" id="contact" placeholder="Your contact"></div>
+
+		<!-- 个人网站 -->
+		<div><input class="text" type="text" id="address" placeholder="Your web address (if has)"></div>
+
+		<div>
+			<!-- <input class="button" type="button" name="" id="message" value="Message"> -->
+			<button class="button" id="message">Message</button></div>
+	</form>
+</div>
+
+<!-- chapter 5: contact -->
+<div class="contact">
+	<!-- 微博 -->
+	<a target="_blank" href="http://weibo.com/u/5254904110?refer_flag=1001030102_&is_all=1" title="@程序员丶冯先生" class="weibo"><i class="fa fa-weibo"></i></a>
+
+	<!-- Github -->
+	<a target="_blank" href="https://github.com/fengwenyi" title="@fengwenyi" class="github"><i class="fa fa-github"></i></a>
+
+	<!-- CSDN -->
+	<a target="_blank" href="http://blog.csdn.net/qq_28336351" title="@程序员丶冯先生" class="git"><img src="./img/CSDN.png" height="48px"></a>
+
+	<!-- Twitter -->
+	<a target="_blank" href="https://twitter.com/xfsy2014" title="@xfsy2014" class="tw"><i class="fa fa-twitter"></i></a>
+</div>
+
+<!-- chapter 6: link -->
+<!--
+想交换友链，怎么办？
+你可以通过留言的方式告诉我
+注意：我的网站是英文站点，建议给你的网站去一个英文名字
+-->
+<div class="link" id="link">
+	<!--
+	<a href="https://www.baidu.com/" target="_blank" class="link-a">Baidu</a>
+	<a href="https://www.google.com/" target="_blank" class="link-a">Google</a>
+	-->
+
+	<div class="clear"></div>
+</div>
+
+<!-- chapter 7: footer -->
+<footer class="footer" id="footer">
+	<p class="viewCount">
+		<!--
+		为了加快浏览速度，网站不再统计访问量
+		<span class="number">3, 993</span> Pageviews</p>
+		-->
+	<!-- 英文站点不显示备案信息 -->
+	<!-- <p class="record">
+		<a href="http://www.beianbeian.com/" target="_blank">蜀ICP备17004656号-1</a></p> -->
+	<p class="info">
+		Designed and developed by <a href="javascript:;">fengwenyi</a>.</p>
+	<p class="info">
+		Copyright 2017 fengwenyi.com. All Rights Reserved. </p>
+</footer>
+
+
+
+<!-- js -->
+<script type="text/javascript" src="http://www.fengwenyi.com/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
+</body>
+</html>

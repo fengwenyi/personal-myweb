@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+	<title>友联管理</title>
+	<script type="text/javascript" src="../../Constant.js"></script>
+</head>
+<body>
+
+<center>
+	<div>
+		<form action="javascript:;" method="POST">
+			<table>
+				<tr>
+					<td>Name：</td>
+					<td>
+						<textarea name="name" cols="50" rows="5" id="name" placeholder="例如：百度"></textarea>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Http：</td>
+					<td>
+						<input type="text" name="http" placeholder="例如：https://www.baidu.com" id="http">
+					</td>
+				</tr>
+
+				<tr>
+					<td>Weight：</td>
+					<td>
+						<input type="text" name="weight" placeholder="例如：0" id="weight">
+					</td>
+				</tr>
+
+				<tr>
+					<tr>
+						<td colspan="2">
+							<input type="submit" name="" value="添加" id="submit">
+						</td>
+					</tr>
+				</tr>
+			</table>
+		</form>
+	</div>
+</center>
+
+<!-- js -->
+ <script type="text/javascript" src = "http://fengwenyi.com/js/jquery-3.2.1.min.js"></script>
+ <script type="text/javascript">
+     var URI = getUrl();
+ $(function() {
+ 	$('#submit').on('click', function() {
+ 		var name = $('#name').val();
+ 		var http = $('#http').val();
+ 		var weight = $('#weight').val();
+ 		if (name == null || http == null || weight == null || name == '' || http == '' || weight == '') {
+ 			alert('不能提交空值');
+ 		} else {
+ 			$.ajax({
+            url: URI + '/admin/link/add',
+            type: 'POST', 
+            async: true,    //或false,是否异步
+            data: {
+            	'name' 	 : name,
+            	'http'   : http,
+            	'weight' : weight
+            },
+            timeout: 5000,    //超时时间
+            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            beforeSend: function(xhr){
+                
+            },
+            success: function(data, textStatus, jqXHR){
+               	var code = data.code;
+
+               	if (code == 0) {
+               		alert('操作成功');
+                	location.href="./list.html"
+               	} else {
+               		alert('Error');
+               	}
+            },
+            error: function(xhr, textStatus){
+                console.log('error');
+            },
+            complete: function(){
+                
+            }
+        });
+ 		}
+ 	});
+ });
+ </script>
+</body>
+</html>

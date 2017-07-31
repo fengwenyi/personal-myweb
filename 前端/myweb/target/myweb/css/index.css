@@ -1,0 +1,279 @@
+/* 页面约束 */
+* {
+	margin: 0;
+	padding: 0;
+}
+.clear {
+	clear: both;
+}
+li {
+	list-style-type: none;
+}
+
+/* header */
+.header {
+	width: 100%;
+	height: 80px;
+	background-color: rgba(0, 0, 0, 0.4);
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.header .header-nav {
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+}
+.header .header-nav a {
+	display: block;
+	padding-left: 30px;
+	padding-right: 30px;
+	height: 100%;
+	color: #fff;
+	font-size: 20px;
+	float: left;
+	line-height: 80px;
+}
+.header .header-nav a:hover {
+	color: #000;
+	background-color: #C3C3C3;
+}
+.header .header-nav .header-nav-in {
+	color: #000;
+	background-color: #C3C3C3;
+}
+
+/* chapter 1: Home */
+.home {
+	width: 100%;
+	height: 100%;
+	background-image: url('http://cn.bing.com/az/hprichbg/rb/LagazuoiRefuge_ROW12939985846_1920x1080.jpg');
+}
+.home .who {
+	width: 100%;
+	color: #fff;
+	text-align: center;
+}
+.home .who .hi {
+	font-size: 48px;
+	display: block;
+	margin-bottom: 20px;
+}
+.home .who .desc {
+	font-size: 24px;
+	width: 61.8%;
+	height: 50px;
+	background-color: rgba(0, 0, 0, 0.2);
+	margin: auto;
+	display: block;
+	line-height: 50px;
+}
+
+/* chapter 2: about me */
+.me {
+	width: 61.8%;
+	margin: 0 auto;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	line-height: 50px;
+	font-size: 24px;
+}
+.me ul li {
+	list-style-type: disc;
+}
+.me .me-info {
+	line-height: 35px;
+	margin-bottom: 30px;
+}
+.me img {
+	border-radius: 5px;
+}
+
+/* chapter 3: diary */
+.diary {
+	width: 100%;
+	background-color: #F3F5F7;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.diary .d-main {
+	width: 61.8%;
+	margin: 0 auto;
+}
+.diary .d-main li {
+	margin-bottom: 20px;
+	background-color: #fff;
+	border: 10px solid #F0EEEE;
+	border-radius: 5px;
+}
+.diary .d-main li .d-content {
+	font-size: 20px;
+	padding: 10px 20px 10px 20px;
+	line-height: 35px;
+}
+.diary .d-main li .d-info {
+	width: 100%;
+}
+.diary .d-main li .d-info .d-left {
+	float: left;
+	padding-left: 20px;
+}
+.diary .d-main li .d-info .d-left .d-time {
+	font-size: 12px;
+	color: #aaa;
+}
+.diary .d-main li .d-info .d-left .d-fen {
+	color: #ddd;
+}
+.diary .d-main li .d-info .d-left .d-city {
+	font-size: 12px;
+	color: #aaa;
+}
+.diary .d-main li .d-info .d-right {
+	float: right;
+	padding-right: 20px;
+}
+.diary .d-main li .d-info .d-right a {
+	color: #ED1C24;
+	margin-right: 5px;
+}
+.diary .d-main li .d-info .d-right .like {
+	color: #ED1C24;
+	margin-right: 5px;
+	display: none;
+}
+.diary .d-main .d-more {
+	width: 200px;
+	margin: 0 auto;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.diary .d-main .d-more a {
+	display: block;
+	padding: 5px 10px 5px 10px;
+	border: 1px solid #FF7F27;
+	border-radius: 5px;
+	float: left;
+	background-color: #fff;
+	color: #FF7F27;
+	text-decoration: none;
+}
+.diary .d-main .d-more .d-next {
+	margin-left: 20px;
+}
+.diary .d-main .d-more a:hover {
+	border-color: #ddd;
+	background-color: #FF7F27;
+	color: #fff;
+}
+
+
+/* chapter 4: message */
+.message {
+	background-color: #eee;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.message form {
+	width: 61.8%;
+	margin: 0 auto;
+}
+.message form .text{
+	width: 100%;
+	height: 50px;
+	font-size: 20px;
+	margin-bottom: 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #fff;
+	outline: none;
+}
+.message form .textarea {
+	width: 100%;
+	height: 100px;
+	font-size: 20px;
+	margin-bottom: 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #fff;
+	resize: none;
+	outline: none;
+}
+.message form .button {
+	width: 100%;
+	height: 50px;
+	border: 1px solid #FF7F27;
+	border-radius: 5px;
+	font-size: 20px;
+	cursor: pointer;
+	outline: none;
+	background-color: #fff;
+	color: #FF7F27;
+}
+.message form .button:hover {
+	background-color: #FF7F27;
+	color: #fff;
+	border-color: #ddd;
+}
+
+/* chapter 5: contact */
+.contact {
+	width: 61.8%;
+	margin: 0 auto;
+	margin-top: 50px;
+	text-align: center;
+}
+.contact a{
+	color: #d81e06;
+	font-size: 54px;
+	margin-right: 50px;
+}
+
+/* chapter 6: Link */
+.link{
+	width: 61.8%;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+.link .link-a{
+	font-size: 20px;
+	color: #333;
+	text-decoration: none;
+	display: block;
+	padding: 5px 10px 5px 10px; /* 上 右 下 左*/
+	line-height: 35px;
+	margin-right: 10px;
+	margin-top: 5px;
+	float: left;
+}
+.link .link-a:hover {
+	color: #FF8C69;
+}
+
+/* chapter 7: Footer; */
+.footer {
+	width: 61.8%;
+	margin: 0 auto;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	border-top: 1px solid #ddd;
+	text-align: center;
+	background-color: #fff;
+	color: #aaa;
+	line-height: 45px;
+}
+.footer .viewCount {
+	font-size: 24px;
+}
+.footer .record a {
+	font-size: 14px;
+	color: #aaa;
+}
+.footer .info {
+	font-size: 20px;
+}
+.footer .info a {
+	font-size: 20px;
+	color: #aaa;
+}
