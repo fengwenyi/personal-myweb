@@ -47,10 +47,10 @@
 	<div class="recommend" id="recommend">
 		<div class="recommend-title">
 			<a class="close" id="close" href="javascript:;">×</a>
-			<h3>我要推荐</h3>
+			<h3>我要推荐<a class="import-a" id="import-a" href="javascript:;">浏览器书签导入</a></h3>
 		</div>
 
-		<div class="form">
+		<div class="form" id="form">
 			<span class="notice">注意：手机号会作为你的标识，是寻找你所有数据的必要条件</span>
 			<div><input class="input-text" type="text" name="" placeholder="网址名称(百度)" maxlength="50" id="name"></div>
 			<div><input class="input-text" type="text" name="" placeholder="网址(https://www.baidu.com)" maxlength="255" id="web-url"></div>
@@ -58,6 +58,14 @@
 			<div><input class="input-text" type="text" name="" placeholder="您的昵称(Mr.Feng)" maxlength="50" id="nickname"></div>
 			<div><input class="input-text" type="text" name="" placeholder="您的手机(135*******)" maxlength="11" id="phone"></div>
 			<div><a href="javascript:;" id="submit">提交</a></div>
+		</div>
+
+		<div class="form-import" id="form-import">
+			<span class="notice">温馨提示：如果你在导入过程中出现未知错误，请给我留言</span>
+			<div class="div-input"><input type="file" name="" id="bookmarks"></div>
+			<div><input class="input-text" type="text" name="" placeholder="您的昵称(Mr.Feng)" maxlength="50" id="nickname-import"></div>
+			<div><input class="input-text" type="text" name="" placeholder="您的手机(135*******)" maxlength="11" id="phone-import"></div>
+			<div><a href="javascript:;" id="import">导入</a></div>
 		</div>
 
 		<div class="explain">

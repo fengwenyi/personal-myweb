@@ -12,6 +12,7 @@ public enum ExceptionConstant {
     SUCCESS(0, "Success"),
     ERROR_USER_PHONE(1, "Error: 该手机号已被注册"),
     ERROR_URL_URI(2, "Error: 该url已被收藏"),
+    ERROR_IMPORT_URL(3, "Error: 没有读取到要导入URL"),
     ERROR_UNKNOWN(-1, "Error: unknown")
     ;
 

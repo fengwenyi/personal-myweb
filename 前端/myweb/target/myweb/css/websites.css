@@ -137,7 +137,7 @@ body {
 	border-bottom: 1px solid #eee;
 	padding-top: 14px;
 }
-.recommend .recommend-title a {
+.recommend .recommend-title .close {
 	display: block;
 	width: 20px;
 	height: 20px;
@@ -148,12 +148,16 @@ body {
 	left: 20px;
 	font-size: 14px;
 }
-.recommend .recommend-title a:hover {
+.recommend .recommend-title .close:hover {
 	font-size: 20px;
 	line-height: 18px;
 }
 .recommend .recommend-title h3 {
 	padding-left: 20px;
+}
+.recommend .recommend-title h3 .import-a {
+	font-size: 12px;
+	margin-left: 20px;
 }
 .recommend .form {
 	width: 80%;
@@ -173,6 +177,27 @@ body {
 	outline: none;
 	color: #333;
 	background-color: #eee;
+}
+
+.recommend .form-import {
+	width: 80%;
+	margin: 0 auto;
+}
+.recommend .form-import .notice {
+	color: red;
+	font-size: 12px;
+}
+.recommend .form-import .div-input, .recommend .form-import .input-text  {
+	width: 100%;
+	height: 35px;
+	font-size: 14px;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	outline: none;
+	color: #333;
+	background-color: #eee;
+	line-height: 35px;
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */

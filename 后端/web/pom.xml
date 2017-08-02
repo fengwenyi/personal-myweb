@@ -62,6 +62,13 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.35</version>
 		</dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.10.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>

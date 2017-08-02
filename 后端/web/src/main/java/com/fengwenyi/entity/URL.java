@@ -23,12 +23,12 @@ public class URL {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name", length = 50)
+    @Column(name = "name")
     @Type(type = "java.lang.String")
     private String name; // url名字
 
     @Column(name = "url")
-    @Type(type = "java.lang.String")
+    @Type(type = "text")
     private String url; // url
 
     @Column(name = "introduce")

@@ -14,6 +14,16 @@ $(function() {
 
 	var URI = getUrl();
 
+	$('#form-import').hide();
+	$('#form').show();
+
+	//
+	$('#import-a').on('click', function() {
+		//
+		$('#form').hide();
+		$('#form-import').show();
+	});
+
 
 	//网址大全
 	$.ajax({
@@ -65,8 +75,6 @@ $(function() {
 		var nickname = $('#nickname').val();
 		var phone = $('#phone').val();
 
-		console.log(name + "/" + url + "/" + introduce + "/" + nickname + "/" + phone);
-
 		if (name !== null && name !== undefined && name !== ''
 			&& url !== null && url !== undefined && url !== ''
 			&& introduce !== null && introduce !== undefined && introduce !== ''
@@ -91,12 +99,75 @@ $(function() {
 		        },
 		        success: function(data, textStatus, jqXHR){
 		            alert('Success');
+		            location.href="./websites.html";
 		        },
 		        error: function(xhr, textStatus){
 		        	
 		        },
 		        complete: function(){
-		            location.href="./websites.html"
+		            
+		        }
+		    });
+
+		} else {
+			alert('不能为空。感谢');
+		}
+	});
+
+
+	// 浏览器书签导入
+	$('#import').on('click', function() {
+
+		var file = document.getElementById("bookmarks").files[0];
+		var nicknameImport = $('#nickname-import').val();
+		var phoneImport = $('#phone-import').val();
+
+		
+
+		if (file !== null && file !== undefined && file !== ''
+			&& nicknameImport !== null && nicknameImport !== undefined && nicknameImport !== ''
+			&& phoneImport !== null && phoneImport !== undefined && phoneImport !== '') {
+
+			var formData = new FormData();
+
+			formData.append('bookmarks', file);
+			formData.append('nickname', nicknameImport);
+			formData.append('phone', phoneImport);
+			
+			$.ajax({
+		        url: URI + '/url/import',
+		        type: 'POST', //GET
+		        async: true,    //或false,是否异步
+		        data: formData,
+		        contentType: false, //必须false才会自动加上正确的Content-Type
+
+		        /**
+                    * 必须false才会避开jQuery对 formdata 的默认处理
+                    * XMLHttpRequest会对 formdata 进行正确的处理
+                    */
+		        processData: false, 
+		        timeout: 1000 * 60,    //超时时间 60s(1分钟)
+		        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+		        beforeSend: function(xhr){
+		            
+		        },
+		        success: function(data, textStatus, jqXHR){
+
+		        	console.log(data);
+
+		        	if (data.code == 0) {
+		        		alert('Success');
+		        		location.href="./websites.html";
+		        	} else {
+		        		alert(data.msg);
+		        	}
+		            
+		        },
+		        error: function(xhr, textStatus){
+		        	
+		        },
+		        complete: function(){
+		            
 		        }
 		    });
 
