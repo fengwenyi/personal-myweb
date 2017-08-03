@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-- meta -->
+	<meta charset="utf-8">
+
+	<title>网址大全</title>
+
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="./css/websites.css">
+
+	<!-- 一些js库 -->
+	<script type="text/javascript" src="http://fengwenyi.com/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="./Constant.js"></script>
+</head>
+<body>
+
+	<!-- hear -->
+	<header class="header">
+		<div class="header-nav">
+			<a href="./index.html">首页</a>
+			<a href="javascript:;" class="header-nav-in">网址之家</a>
+
+			<div class="clear"></div>
+		</div>
+	</header>
+
+	<!-- main -->
+	<div class="main">
+		<ul id="url">
+			<!-- 
+			<li>
+				<a class="name" target="_blank" href="">百度一下，你就只知道</a>
+				<div class="info">2017-7-29 <span class="division">|</span> Mr.Feng</div>
+				<div class="desc">本例演示当元素内容太大而超出规定区域时</div>
+			</li> 
+			
+			<div class="clear"></div>
+			-->
+		</ul>
+	</div>
+
+	<!-- recoommend -->
+	<div class="recommend-bg" id="recommend-bg"></div>
+
+	<!-- 数据加载提示 -->
+	<div class="data-load-tip" id="data-load-tip">玩命加载中···</div>
+
+	<div class="recommend" id="recommend">
+		<div class="recommend-title">
+			<a class="close" id="close" href="javascript:;">×</a>
+			<h3><span id="title">我要推荐</span><a class="import-a" id="import-a" href="javascript:;">浏览器书签导入</a></h3>
+		</div>
+
+		<div class="form" id="form">
+			<span class="notice">注意：手机号会作为你的标识，是寻找你所有数据的必要条件</span>
+			<div><input class="input-text" type="text" name="" placeholder="网址名称(百度)" maxlength="50" id="name"></div>
+			<div><input class="input-text" type="text" name="" placeholder="网址(https://www.baidu.com)" maxlength="255" id="web-url"></div>
+			<div><input class="input-text" type="text" name="" placeholder="推荐理由(百度一下，你就只知道)" maxlength="255" id="introduce"></div>
+			<div><input class="input-text" type="text" name="" placeholder="您的昵称(Mr.Feng)" maxlength="50" id="nickname"></div>
+			<div><input class="input-text" type="text" name="" placeholder="您的手机(135*******)" maxlength="11" id="phone"></div>
+			<div><a href="javascript:;" id="submit">提交</a></div>
+		</div>
+
+		<div class="form-import" id="form-import">
+			<span class="notice">温馨提示：如果你在导入过程中出现未知错误，请给我留言</span>
+			<div class="div-input"><input type="file" name="" id="bookmarks"></div>
+			<div><input class="input-text" type="text" name="" placeholder="您的昵称(Mr.Feng)" maxlength="50" id="nickname-import"></div>
+			<div><input class="input-text" type="text" name="" placeholder="您的手机(135*******)" maxlength="11" id="phone-import"></div>
+			<div><a href="javascript:;" id="import">导入</a></div>
+		</div>
+
+		<div class="form-import" id="form-iBookmarks">
+			<div><input class="input-text" type="text" name="" placeholder="请输入你的手机号，以便帮你查询" maxlength="11" id="phone-iBookmarks"></div>
+			<div><a href="javascript:;" id="submit-iBookmarks">确认</a></div>
+		</div>
+
+		<div class="explain">
+			<ul>
+				<li>1. 手机号会作为你的标识</li>
+				<li>2. 昵称是以第一次提交的昵称为准</li>
+			</ul>
+			<!-- 
+			//怎么给出呢？？？？？
+			<div>
+				$.ajax({
+			        url: '',
+			        type: 'GET',
+			        async: true,    //是否异步, true是， false否
+			        data: {
+			        	phone: 您的注册手机号  //用您第一次提交的手机号替换"您的注册手机号"
+			        },
+			        timeout: 5000,    //超时时间,建议5s，如果您的数据量过大，可以适当延长
+			        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+			        beforeSend: function(xhr){
+			            // loading
+			        },
+			        success: function(data, textStatus, jqXHR){
+			            // data 为返回的数据，您可以在这里操作
+
+			            // 解析json数据
+			            // console.log(data.code + " " + data.msg + " " + data.data);
+			            var code = data.code;
+			            if (code == 0) //code 为0时为正确返回，其他为错误代码
+			            {
+			            	$.each(data.data, function(i, item) {
+			            		item.name // 网站名称
+			            		item.http // 网址
+			            		item.time // 提交时间
+			            	});
+			            } else {
+			            	alert(data.msg);
+			            }
+
+			        },
+			        error: function(xhr, textStatus){
+			        	// a some error info
+			        },
+			        complete: function(){
+			            // loaded
+			        }
+			    });
+			</div> -->
+		</div>
+	</div>
+
+
+	<footer class="footer">
+		Copyright © 2017 fengwenyi.com
+		<a href="javascript:;" id="iRecommend">我要推荐</a>
+		<span> | </span>
+		<a href="javascript:;" id="iBookmarks">我的书签</a>
+		<a href="javascript:;" id="iBookmarks-export">YourNickname</a>
+	</footer>
+
+	<!-- js -->
+	<script type="text/javascript" src="./js/websites.js"></script>
+
+</body>
+</html>
