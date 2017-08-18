@@ -11,6 +11,28 @@ $(function() {
 	//$('#who').css('height', screen.availHeight + "px");
 	$('#who').css('padding-top', screenHeight / 2 - 80 + "px");
 
+	// index bg
+	//http://guolin.tech/api/bing_pic
+
+	$.ajax({
+        url: URI + '/index/bg',
+        type: 'GET', //GET
+        async: true,    //或false,是否异步
+        data: {},
+        timeout: 3000,    //超时时间 3s
+        dataType: 'text',    //返回的数据格式：json/xml/html/script/jsonp/text
+        beforeSend: function(xhr){
+            
+        },
+        success: function(data, textStatus, jqXHR){
+            $('#home').css('background', 'url("' + data + '")');
+        },
+        error: function(xhr, textStatus){
+        },
+        complete: function(){
+        }
+    });
+
 	// message
 	$('#message').on('click', function() {
 		var name = $('#name').val();

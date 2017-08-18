@@ -20,6 +20,9 @@ public enum ExceptionConstant {
     ERROR_URL_URI(200, "Error: 该url已被收藏"),
     ERROR_IMPORT_URL(201, "Error: 没有读取到要导入URL"),
 
+    // 300-400 data
+    ERROR_NO_DATA(300, "Error: 暂无数据"),
+
     // 负数 未知错误
     ERROR_UNKNOWN(-1, "Error: unknown")
     ;

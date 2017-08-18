@@ -76,62 +76,158 @@
 			<div><a href="javascript:;" id="submit-iBookmarks">确认</a></div>
 		</div>
 
+		<div class="form-import" id="iBookmarks-export-option">
+			<div><a href="javascript:;" id="submit-iBookmarks-export-html">将书签导入到HTML文件</a></div>
+			<div><a href="javascript:;" id="submit-iBookmarks-export-ajax">书签导出代码示例</a></div>
+		</div>
+
+		<div class="form-import" id="iBookmarks-export-ajax-demo" style="height: 300px; overflow: auto; background-color: #333; color: #bbb; font-size: 14px;">
+
+<p>
+    $.ajax({
+</p>
+<p>
+    &nbsp;&nbsp;&nbsp;&nbsp;var phone = &#39;您的注册手机号&#39;;&nbsp;/*用您第一次提交的手机号替换&quot;您的注册手机号&quot;*/
+</p>
+<p>
+    &nbsp; &nbsp; url: &#39;http://101.200.40.98:9090//url/my/&#39; + phone,&nbsp;
+</p>
+<p>
+    &nbsp; &nbsp; type: &#39;GET&#39;,
+</p>
+<p>
+    &nbsp; &nbsp; async: true, &nbsp; &nbsp;/*是否异步, true是， false否*/
+</p>
+<p>
+    &nbsp; &nbsp; data: {&nbsp;
+</p>
+<p>
+    &nbsp; &nbsp; },
+</p>
+<p>
+    &nbsp; &nbsp; timeout: 1000 * 30, &nbsp; &nbsp;/*超时时间，30s*/
+</p>
+<p>
+    &nbsp; &nbsp; dataType: &#39;json&#39;, &nbsp; &nbsp;/*返回的数据格式：json/xml/html/script/jsonp/text*/
+</p>
+<p>
+    &nbsp; &nbsp; beforeSend: function(xhr){
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; // loading
+</p>
+<p>
+    &nbsp; &nbsp; },
+</p>
+<p>
+    &nbsp; &nbsp; success: function(data, textStatus, jqXHR){
+</p>
+<p>
+    &nbsp; &nbsp; <span style="white-space:pre">	</span>// loaded
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; /* data 为返回的数据，您可以对他进行操作*/
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; /* 解析json数据示例*/
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; // console.log(data.code + &quot; &quot; + data.msg + &quot; &quot; + data.data);
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; var code = data.code;
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; if (code == 0) /*code 为0时为正确返回，其他为错误代码*/
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; {
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; <span style="white-space:pre">	</span>$.each(data.data, function(i, item) {
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; <span style="white-space:pre">		</span>item.name // 网站名称
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; <span style="white-space:pre">		</span>item.http // 网址
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; <span style="white-space:pre">		</span>item.time // 提交时间
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; <span style="white-space:pre">	</span>});
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; } else {
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; <span style="white-space:pre">	</span>// Error : Msg
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; }
+</p>
+<p>
+    &nbsp; &nbsp; },
+</p>
+<p>
+    &nbsp; &nbsp; error: function(xhr, textStatus){
+</p>
+<p>
+    &nbsp; &nbsp; <span style="white-space:pre">	</span>// loaded
+</p>
+<p>
+    &nbsp; &nbsp; <span style="white-space:pre">	</span>// a some error info
+</p>
+<p>
+    &nbsp; &nbsp; },
+</p>
+<p>
+    &nbsp; &nbsp; complete: function(){
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp; &nbsp; // completed
+</p>
+<p>
+    &nbsp; &nbsp; }
+</p>
+<p>
+    });
+</p>
+<p>
+    <br/>
+</p>
+
+		</div>
+
 		<div class="explain">
 			<ul>
 				<li>1. 手机号会作为你的标识</li>
 				<li>2. 昵称是以第一次提交的昵称为准</li>
 			</ul>
-			<!-- 
-			//怎么给出呢？？？？？
-			<div>
-				$.ajax({
-			        url: '',
-			        type: 'GET',
-			        async: true,    //是否异步, true是， false否
-			        data: {
-			        	phone: 您的注册手机号  //用您第一次提交的手机号替换"您的注册手机号"
-			        },
-			        timeout: 5000,    //超时时间,建议5s，如果您的数据量过大，可以适当延长
-			        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-			        beforeSend: function(xhr){
-			            // loading
-			        },
-			        success: function(data, textStatus, jqXHR){
-			            // data 为返回的数据，您可以在这里操作
-
-			            // 解析json数据
-			            // console.log(data.code + " " + data.msg + " " + data.data);
-			            var code = data.code;
-			            if (code == 0) //code 为0时为正确返回，其他为错误代码
-			            {
-			            	$.each(data.data, function(i, item) {
-			            		item.name // 网站名称
-			            		item.http // 网址
-			            		item.time // 提交时间
-			            	});
-			            } else {
-			            	alert(data.msg);
-			            }
-
-			        },
-			        error: function(xhr, textStatus){
-			        	// a some error info
-			        },
-			        complete: function(){
-			            // loaded
-			        }
-			    });
-			</div> -->
 		</div>
 	</div>
 
 
 	<footer class="footer">
+
+		<div class="footer-nav">
+			
+			<a href="javascript:;" id="iRecommend">我要推荐</a>
+			<span> | </span>
+			<a href="javascript:;" id="iBookmarks">我的书签</a>
+			<a href="javascript:;" id="iBookmarks-export">YourNickname</a>
+			<span> | </span>
+			<input type="text" name="" id="search" placeholder="key">
+			<a href="javascript:;" id="submit-iSearch">搜索</a>
+
+		</div>
+
 		Copyright © 2017 fengwenyi.com
-		<a href="javascript:;" id="iRecommend">我要推荐</a>
-		<span> | </span>
-		<a href="javascript:;" id="iBookmarks">我的书签</a>
-		<a href="javascript:;" id="iBookmarks-export">YourNickname</a>
+		
 	</footer>
 
 	<!-- js -->

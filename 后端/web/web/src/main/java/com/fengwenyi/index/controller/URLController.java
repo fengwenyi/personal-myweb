@@ -14,11 +14,17 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -258,5 +264,135 @@ public class URLController {
         {
             System.out.println("删除失败");
         }
+    }
+
+
+    // 搜索，模糊匹配，  （？支持多关键字搜索[自定义sql语句] 怎么对页面关键字变红呢。。。。。。）
+    @GetMapping(value = "/n_i_like/{keyword}")
+    public String nameAndIntroduceLike(@PathVariable(value = "keyword") String keyword) {
+
+        /*String [] splits = keyword.split(" ");
+
+        String sql = "1 and ";
+        int i = 0;
+        for (String split : splits) {
+            sql += "url.name like %:" + split + "% Or url.introduce like %:" + split + "%";
+
+            if (i < (splits.length - 1)) {
+                sql += " and ";
+            }
+
+            i++;
+        }*/
+
+
+        String key = "%" + keyword + "%";
+
+        List<URL> urls = urlRepository.findAllByNameLikeOrIntroduceLike(key);
+
+        Result result;
+
+        if (urls.size() > 0) // 有数据
+        {
+            result = new Result(ExceptionConstant.SUCCESS);
+            List<URLBean> urlBeans = new ArrayList<>();
+            for (URL url : urls) {
+                URLBean urlBean = new URLBean(url.getName(), url.getUrl(), url.getIntroduce(), url.getTime(),
+                        url.getUser().getNickname());
+                urlBeans.add(urlBean);
+            }
+            result.setData(urlBeans);
+        } else // 没有数据
+        {
+            result = new Result(ExceptionConstant.ERROR_NO_DATA);
+        }
+
+        Gson gson = new Gson();
+        return gson.toJson(result);
+    }
+
+    // 书签导出
+    @GetMapping(value = "/export/{phone}")
+    public ResponseEntity<InputStreamResource> exportBookmarks(@PathVariable(value = "phone") String phone) throws IOException {
+
+        // 此处定义一些返回时可能涉及到的变量
+        HttpHeaders headers = null;
+        FileSystemResource file = null;
+
+        // 查询
+        List<User> users = userRepository.findAllByPhone(phone);
+        if (users.size() > 0) {
+            User user = users.get(0);
+            List<URL> urls = urlRepository.findAllByUser(user);
+
+            StringBuffer stringBuffer = new StringBuffer();
+
+            long startTime = System.currentTimeMillis() / 1000;
+
+            for (URL url : urls) {
+                stringBuffer.append("<DT><A HREF=\"" + url.getUrl() + "\" ADD_DATE=\"" + (url.getTime() / 1000) + "\"> "+ url.getName() + "</A>\n");
+            }
+
+            long endTime = System.currentTimeMillis() / 1000;
+
+            String text = "<!DOCTYPE NETSCAPE-Bookmark-file-1>\n" +
+                    "\n" +
+                    "<!-- WenyiFeng(xfsy2014@gmail.com) -->\n" +
+                    "\n" +
+                    "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=UTF-8\">\n" +
+                    "<TITLE>Bookmarks</TITLE>\n" +
+                    "<H1>Bookmarks</H1>\n" +
+                    "<DL><p>\n" +
+                    "    <DT><H3 ADD_DATE=\"" + startTime + "\" LAST_MODIFIED=\"" + endTime + "\" PERSONAL_TOOLBAR_FOLDER=\"true\">书签栏</H3>\n" +
+                    "    <DL><p>\n" +
+                    stringBuffer +
+                    "    </DL><p>\n" +
+                    "</DL><p>";
+            // 文件写入(HTML)
+            String filePath = "/fengwenyi/file/temp/";
+            // String fileName = "Bookmarks_" + System.currentTimeMillis() + ".html"; // 由于文件不能删除，所以直接覆盖掉，如果以后，可以解决这个问题的话，最好用标志命名
+            String fileName = "Bookmarks" + ".html";
+
+            try {
+                fileWrite(text, filePath + fileName);
+
+                // 文件下载
+
+                file = new FileSystemResource(filePath + fileName);
+                headers = new HttpHeaders();
+                headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+                headers.add("Content-Disposition", String.format("attachment; filename=\"%s\"", file.getFilename()));
+                headers.add("Pragma", "no-cache");
+                headers.add("Expires", "0");
+
+                // 文件删除
+                //deleteFile(new File(filePath + fileName));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+
+        }
+
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentLength(file.contentLength())
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(new InputStreamResource(file.getInputStream()));
+    }
+
+    // 文件写入
+    public void fileWrite(String text, String fileInfo) throws IOException {
+        File file = new File(fileInfo);
+        if (!file.exists()) // 如果不存在
+        {
+            file.createNewFile(); // 创建一个新文件
+        }
+        FileOutputStream out = new FileOutputStream(file, false); // 文件； 是否采用追加的方式写入
+        out.write(text.getBytes("UTF-8")); // 采用UTF-8编写写入文件
+        out.close(); // 关闭输出流
     }
 }

@@ -1,12 +1,12 @@
-/* 推荐页面 */
+/*
 jQuery(document).ready(function($) {
-	// 我要推荐
+	//我要推荐
   $('#iRecommend').click(function(){
     $('#recommend-bg').fadeIn(100);
     $('#recommend').slideDown(200);
   })
 
-  //我的书签
+  	//我的书签
   $('#iBookmarks').click(function(){
     $('#recommend-bg').fadeIn(100);
     $('#recommend').slideDown(200);
@@ -22,12 +22,13 @@ jQuery(document).ready(function($) {
     $('#title').html('我的书签');
   })
 
-  // close
+  //close
   $('#close').click(function(){
     $('#recommend-bg').fadeOut(100);
     $('#recommend').slideUp(200);
   })
 })
+*/
 
 $(function() {
 
@@ -36,29 +37,94 @@ $(function() {
 	$('#form-import').hide();
 	$('#form').show();
 
-	//
-	$('#import-a').on('click', function() {
-		//
-		$('#form').hide();
-		$('#form-import').show();
+/*
+	// 我在这里隐藏一些东西
+	//隐藏弹出界面背景
+	$('#recommend-bg').hide();
+	//隐藏数据加载提示
+	$('#data-load-tip').hide();
+	// 隐藏弹出框界面
+	$('#recommend').hide();
+	//隐藏弹出框标题
+	$('#recommend-title').hide();
+	// 隐藏推荐输入框
+	$('#form').hide();
+	// 隐藏推荐导入浏览器书签
+	$('#form-import').hide();
+	// 隐藏个人书签
+	$('#form-iBookmarks').hide();
+	// 隐藏我的书签导出
+	$('#iBookmarks-export').hide();
+	// 隐藏浏览器书签导入提示
+	$('#import-a').hide();
+	// 书签导出选项
+	$('#iBookmarks-export-option').hide();
+	// 书签示例代码
+	$('#iBookmarks-export-ajax-demo').hide();
+*/
+
+	//界面点击事件
+	// 推荐(背景，弹窗背景，推荐)
+	$('#iRecommend').on('click', function() {
+		$('#recommend-bg').fadeIn(100); //1
+
+    	$('#recommend').slideDown(200); //2
+
+    	//3
+    	$('#recommend-title').show();
+    	$('#form').show();
+    	$('#import-a').show();
 	});
 
-	// 我在这里隐藏一些东西
-	$('#iBookmarks-export').hide();
+	// 关闭
+	$('#close').on('click', function() {
+		$('#recommend-bg').fadeOut(100); // 1
+    	$('#recommend').slideUp(200); // 2
 
+    	// 3
+    	$('#recommend-title').hide();
+		$('#form').hide();
+		$('#form-import').hide();
+		$('#form-iBookmarks').hide();
+		$('#import-a').hide();
+	});
 
-	//加载数据的tip
-	//出现
-	/*
-	$('#recommend-bg').fadeIn(100);
-    $('#data-load-tip').slideDown(200);
-    */
-	//消失
-	/*
-	$('#recommend-bg').fadeOut(100);
-    $('#data-load-tip').slideUp(200);
-    */
+	// 我的书签
+	$('#iBookmarks').on('click',function(){
+	    $('#recommend-bg').fadeIn(100);
+	    $('#recommend').slideDown(200);
+	    //$('#form-iBookmarks').slideDown(200);
 
+	    // 需要隐藏一些东西
+	    $('#import-a').hide();
+	    $('#form').hide();
+	    $('#form-import').hide();
+
+	    // 显示
+	    $('#form-iBookmarks').show();
+	    $('#title').html('我的书签');
+  	});
+
+  	//书签导出选项
+	$('#iBookmarks-export').on('click', function() {
+		$('#recommend-bg').fadeIn(100);
+	    $('#recommend').slideDown(200);
+
+	    $('#title').html('书签导出');
+
+	    // show
+	    $('#recommend-title').show();
+	    $('#iBookmarks-export-option').show();
+	});
+
+	$('#submit-iBookmarks-export-ajax').on('click', function() {
+		$('#title').html('书签导出Ajax代码示例');
+
+	    // show
+	    $('#recommend-title').show();
+	    $('#iBookmarks-export-ajax-demo').show();
+	    $('#iBookmarks-export-option').hide();
+	});
 
 	//网址大全
 	$.ajax({
@@ -79,8 +145,8 @@ $(function() {
             var code = data.code;
             if (code == 0) {
             	$.each(data.data, function(i, item) {
-            		//console.log(item.id + " / " + item.time + " / " + item.place + " / " + item.content);
             		var urlHtml = '<li>'
+            							+ '<span class="http-count">' + (i + 1) + '</span>'
 										+ '<a class="name" target="_blank" href="' + item.url + '">' + item.name + '</a>'
 										+ '<div class="info">' + formatDate(new Date(item.time)) + '<span class="division">|</span>' + item.nickname + '</div>'
 										+ '<div class="desc">' + item.introduce + '</div>'
@@ -105,6 +171,13 @@ $(function() {
     		$('#data-load-tip').slideUp(200);
         }
     });
+
+    //所有的点击事件
+    $('#import-a').on('click', function() {
+		//
+		$('#form').hide();
+		$('#form-import').show();
+	});
 
 	// 网址推荐
 	$('#submit').on('click', function() {
@@ -254,6 +327,7 @@ $(function() {
 
 		            		//console.log(item.id + " / " + item.time + " / " + item.place + " / " + item.content);
 		            		var urlHtml = '<li>'
+		            							+ '<span class="http-count">' + (i + 1) + '</span>'
 												+ '<a class="name" target="_blank" href="' + item.url + '">' + item.name + '</a>'
 												+ '<div class="info">' + formatDate(new Date(item.time)) + '<span class="division">|</span>' + item.nickname + '</div>'
 												+ '<div class="desc">' + item.introduce + '</div>'
@@ -267,7 +341,10 @@ $(function() {
 		            	// 2. 用户信息
 			            //...
 			            $('#iBookmarks-export').show();
+
 			            $('#iBookmarks').hide();
+
+			            $('#form-iBookmarks').hide();
 
 		            	$('#recommend-bg').fadeOut(100);
     					$('#recommend').slideUp(200);
@@ -291,8 +368,89 @@ $(function() {
 		}
 	});
 
+	// 搜索
+	$('#submit-iSearch').on('click', function() {
+		var search = $('#search').val();
+
+		if (search !== null && search !== undefined && search !== '') {
+			
+			$.ajax({
+		        url: URI + '/url/n_i_like/' + search,
+		        type: 'GET', //GET
+		        async: true,    //或false,是否异步
+		        data: {
+		        },
+		        timeout: 3000,    //超时时间 3s
+		        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+		        beforeSend: function(xhr){
+		            //loading
+    				$('#data-load-tip').slideDown(200);
+		        },
+		        success: function(data, textStatus, jqXHR){
+
+		            $('#url').html(''); //清空
+
+		            // 1. 正文显示
+		            var code = data.code;
+		            if (code == 0) {
+		            	$.each(data.data, function(i, item) {
+
+		            		//console.log(item.id + " / " + item.time + " / " + item.place + " / " + item.content);
+		            		var urlHtml = '<li>'
+		            							+ '<span class="http-count">' + (i + 1) + '</span>'
+												+ '<a class="name" target="_blank" href="' + item.url + '">' + item.name + '</a>'
+												+ '<div class="info">' + formatDate(new Date(item.time)) + '<span class="division">|</span>' + item.nickname + '</div>'
+												+ '<div class="desc">' + item.introduce + '</div>'
+											+ '</li>';
+									$('#url').append(urlHtml);
+		            	});
+
+		            	var clear = '<div class="clear"></div>';
+		            	$('#url').append(clear);
+
+		            } else {
+		            	alert(data.msg);
+		            }
+
+		        },
+		        error: function(xhr, textStatus){
+		        	
+		        },
+		        complete: function(){
+		            //loaded
+    				$('#data-load-tip').slideUp(200);
+		        }
+		    });
+
+		} else {
+			alert('不能为空。感谢');
+		}
+	});
+
+	//我的书签导出
+	$('#submit-iBookmarks-export-html').on('click', function() {
+
+		/* 方法一 */
+		var phone = $('#phone-iBookmarks').val();
+
+		var url = URI + '/url/export/' + phone;
+
+		//window.open(url);
+
+		/* 方法二 */
+		var $eleForm = $("<form method='get'></form>");
+
+        $eleForm.attr("action", url);
+
+        $(document.body).append($eleForm);
+
+        //提交表单，实现下载
+        $eleForm.submit();
+	});
+
 });
 
+// 时间格式化
 function formatDate(now) {
 　　var year = now.getFullYear(),
 　　month = now.getMonth() + 1,
