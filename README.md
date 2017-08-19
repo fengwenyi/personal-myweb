@@ -51,6 +51,8 @@
 8. HTML文件解析
 9. Gson使用
 10. 注解
+11. 通过使用枚举类型实现统一异常处理
+12. kotlin的应用
 
 
 上线地址：http://my.fengwenyi.com/
