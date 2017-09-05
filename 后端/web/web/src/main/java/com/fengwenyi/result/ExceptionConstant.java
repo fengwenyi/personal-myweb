@@ -23,6 +23,13 @@ public enum ExceptionConstant {
     // 300-400 data
     ERROR_NO_DATA(300, "Error: 暂无数据"),
 
+    // 500 - 1000 评说系统异常
+    ERROR_CS_CUSTOMER_SAVE(500, "Error: 客户信息保存出错"),
+    ERROR_CS_COMMENT_SAVE(501, "Error: 评论保存出错"),
+    ERROR_CS_COMMENT_DATA_NO(502, "Error: 暂无评论数据"),
+    ERROR_CS_CUSTOMER_DATA_NO(503, "Error: 客户信息不存在"),
+    ERROR_CS_REPLY_COMMENT_ENTITY_NO(504, "Error: 回复评论ID不正确"),
+
     // 负数 未知错误
     ERROR_UNKNOWN(-1, "Error: unknown")
     ;
